@@ -23,7 +23,7 @@ driver.get(url)
 #delay to load the page
 time.sleep(5)
 
-#event click to change filters
+#filter button path and event click to change filters
 driver.find_element_by_xpath('//*[@id="timeFrame_thisWeek"]').click()
 
 #delay to apply the filters
@@ -34,6 +34,22 @@ element = driver.find_element_by_xpath('//*[@id="economicCalendarData"]')
 html_content = element.get_attribute('outerHTML')
 
 soup = BeautifulSoup(html_content, 'html.parser')
+
+# getting economics rating data
+ratings = soup.findAll("td",{"class":"left textNum sentiment noWrap"})
+
+for rating_data in ratings:
+    #saving rating titles
+    titles = rating_data.get('title')
+    print(titles)
+    #converting rating titles to Integer
+    if titles == 'Volatilid. Esperada Baixa':
+        print('1')
+    elif titles == 'Volatilid. Esperada Moderada':
+        print('2')
+    else:
+        print('3')
+
 table = soup.find(name='table')
 
 df_full = pd.read_html(str(table))[0]
@@ -46,7 +62,8 @@ df.columns = ['Hour', 'Currency', 'Import.', 'Event', 'Current', 'Projection', '
 filtered_df = df.loc[(df['Currency'] == 'USD') | (df['Currency'] == 'BRL')]
 
 # casting dataframe to .csv
-filtered_df.to_csv('economic_calendar.csv', encoding='utf-8-sig')
+#filtered_df.to_csv('economic_calendar.csv', encoding='utf-8-sig')
+
 print('Scraping Successfully')
 
 #closing firefox
