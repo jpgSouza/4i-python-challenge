@@ -18,5 +18,15 @@ driver.get(url)
 #delay to load the page
 time.sleep(5)
 
-#closing the firefox
+#event click to change filters
+driver.find_element_by_xpath('//*[@id="timeFrame_thisWeek"]').click()
+
+#delay to apply the filters
+time.sleep(3)
+
+#economic table path
+element = driver.find_element_by_xpath('//*[@id="economicCalendarData"]')
+html_content = element.get_attribute('outerHTML')
+
+#closing firefox
 driver.quit()
