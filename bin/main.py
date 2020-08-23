@@ -1,6 +1,6 @@
-# -*- coding: UTF-8 -*-
-# -*- coding: cp1252 -*-
-#coding: utf-8
+# encoding: utf-8
+# encoding: iso-8859-1
+# encoding: win-1252
 
 import pandas as pd
 from bs4 import BeautifulSoup
@@ -46,7 +46,7 @@ df.columns = ['Hour', 'Currency', 'Import.', 'Event', 'Current', 'Projection', '
 filtered_df = df.loc[(df['Currency'] == 'USD') | (df['Currency'] == 'BRL')]
 
 # casting dataframe to .csv
-filtered_df.to_csv('economic_calendar.csv')
+filtered_df.to_csv('economic_calendar.csv', encoding='utf-8-sig')
 print('Scraping Successfully')
 
 #closing firefox
