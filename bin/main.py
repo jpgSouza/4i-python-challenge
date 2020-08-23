@@ -1,4 +1,7 @@
-import requests
+# -*- coding: UTF-8 -*-
+# -*- coding: cp1252 -*-
+#coding: utf-8
+
 import pandas as pd
 from bs4 import BeautifulSoup
 from selenium import webdriver
@@ -9,10 +12,12 @@ url = "https://br.investing.com/economic-calendar/" #web URL
 
 #Firefox defining
 option = Options()
+#background manipulation
 option.headless = True
-driver = webdriver.Firefox()
+driver = webdriver.Firefox(options=option)
 
 #getting the url and opening the Firefox
+print('Loading...')
 driver.get(url)
 
 #delay to load the page
@@ -27,6 +32,22 @@ time.sleep(3)
 #economic table path
 element = driver.find_element_by_xpath('//*[@id="economicCalendarData"]')
 html_content = element.get_attribute('outerHTML')
+
+soup = BeautifulSoup(html_content, 'html.parser')
+table = soup.find(name='table')
+
+df_full = pd.read_html(str(table))[0]
+# getting columns data
+df = df_full[['Hora', 'Moeda', 'Import.', 'Evento', 'Atual', 'Projeção', 'Prévio']]
+# creating columns
+df.columns = ['Hour', 'Currency', 'Import.', 'Event', 'Current', 'Projection', 'Previous']
+
+# filtering data
+filtered_df = df.loc[(df['Currency'] == 'USD') | (df['Currency'] == 'BRL')]
+
+# casting dataframe to .csv
+filtered_df.to_csv('economic_calendar.csv')
+print('Scraping Successfully')
 
 #closing firefox
 driver.quit()
