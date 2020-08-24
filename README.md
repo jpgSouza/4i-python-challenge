@@ -10,7 +10,7 @@
 -----
 
 <h3 align="center"> 
-  <img src="https://github.com/jpgSouza/4i-python-challenge/blob/master/table_data.png" >
+  <img src="https://github.com/jpgSouza/4i-python-challenge/blob/master/table.png" >
 </h3>
 
 -----
