@@ -53,7 +53,7 @@ git clone https://github.com/jpgSouza/4i-python-challenge.git
 ```
 
 ### Comando
-- Dentro da pasta do projeto, na subbasta 'bin' rode o comando no seu terminal
+- Dentro da pasta do projeto, na subpasta 'bin' rode o comando no seu terminal
 ```sh
 python main.py
 ```
