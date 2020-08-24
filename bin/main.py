@@ -58,7 +58,15 @@ df_full = pd.read_html(str(table))[0]
 df = df_full[['Hora', 'Moeda', 'Import.', 'Evento', 'Atual', 'Projeção', 'Prévio']]
 
 # creating columns
-df.columns = ['Hour', 'Currency', 'Import.', 'Event', 'Current', 'Projection', 'Previous']
+df.columns = ['Hour', 'Currency', 'Import', 'Event', 'Current', 'Projection', 'Previous']
+
+# fill the import column with 0
+df['Import'].fillna(0, inplace=True)
+
+# remove date
+df = df[df['Import'].apply(lambda x: str(x).isdigit())]
+# insert converted rating list to Import column
+df = df.assign(Import = converted_rating_list)
 
 # filtering data
 filtered_df = df.loc[(df['Currency'] == 'USD') | (df['Currency'] == 'BRL')]
