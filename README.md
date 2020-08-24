@@ -3,6 +3,18 @@
 
 -----
 
+<h3 align="center"> 
+  <img src="https://github.com/jpgSouza/4i-python-challenge/blob/master/testing_gif.gif" >
+</h3>
+
+-----
+
+<h3 align="center"> 
+  <img src="https://github.com/jpgSouza/4i-python-challenge/blob/master/table_data.png" >
+</h3>
+
+-----
+
 ## Funcionalidades
 A aplicação conta com algumas funcionalidades já implementadas:
 - [X] Fazer o request da URL do site
