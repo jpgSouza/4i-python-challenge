@@ -48,6 +48,11 @@ pip install beautifulsoup4
 pip install requests
 ```
 
+ - LXML:
+ ```
+pip install lxml
+```
+
  - Selenium: Automatização Web 
  ```
 pip install selenium
